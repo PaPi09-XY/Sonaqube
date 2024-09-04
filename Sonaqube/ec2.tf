@@ -32,15 +32,8 @@ resource "aws_security_group" "allow_web" {
   name        = "allow_web_sonaqube"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_default_vpc.default_vpc.id
-
-  ingress {
-    description = "HTTPS web traffice from vpc"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
    
-  }
+  
 
   ingress {
     description = "HTTP inbound rule"
@@ -56,15 +49,6 @@ resource "aws_security_group" "allow_web" {
     to_port     = 9000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-  
-  ingress {
-    description = "HTTP inbound rule"
-    from_port        = 8080
-    to_port          = 8080
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-   
   }
 
 ingress {
@@ -110,7 +94,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "server4" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  instance_type = "t3a.medium"
   subnet_id     = aws_default_subnet.default_Az1.id
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name      = "kay2"
