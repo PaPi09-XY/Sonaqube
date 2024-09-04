@@ -116,7 +116,7 @@ resource "aws_instance" "server2" {
 
 }
 
-# print the url of the jenkins server
+# print the url of the tomcat server
 output "Tomcat_website_url" {
   value     = join ("", ["http://", aws_instance.server2.public_ip, ":", "8080"])
   description = "Tomcat Server is server2"
