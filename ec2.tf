@@ -108,7 +108,6 @@ resource "aws_instance" "server4" {
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name      = "kay2"
   user_data = "${file("install_sonarqube.sh")}"
-
   tags = {
     Name = "sonarqube_server"
   }
