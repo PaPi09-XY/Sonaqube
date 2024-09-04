@@ -107,8 +107,6 @@ resource "aws_instance" "server4" {
   subnet_id     = aws_default_subnet.default_Az1.id
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name      = "kay2"
-
-  # Update user_data to run install_sonaqube.sh
   user_data = "${file("install_sonarqube.sh")}"
 
   tags = {
