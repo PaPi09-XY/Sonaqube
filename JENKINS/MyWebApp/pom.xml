@@ -4,11 +4,11 @@
     
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.papi09xy</groupId>
-    <artifactId>papilearning</artifactId>
+    <artifactId>Sonaqube</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>papi Learning Maven Webapp</name>
-    <url>https://github.com/PaPi09-XY/papilearning</url>
+    <url>https://github.com/PaPi09-XY/Sonaqube</url>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
