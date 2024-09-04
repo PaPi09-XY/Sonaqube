@@ -4,7 +4,7 @@
 sudo apt-get update -y
 
 # Install required dependencies
-sudo apt-get install -y openjdk-11-jdk wget unzip
+sudo apt-get install -y openjdk-11-jdk wget unzip ufw
 
 # Download and install SonarQube
 cd /opt
@@ -16,12 +16,13 @@ sudo useradd -m -d /opt/sonarqube sonarqube
 # Set permissions
 sudo chown -R sonarqube:sonarqube /opt/sonarqube
 
-# Configure SonarQube memory settings
+# Configure SonarQube memory settings and host binding
 sudo bash -c 'cat <<EOF >> /opt/sonarqube/conf/sonar.properties
 sonar.web.javaOpts=-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError
 sonar.search.javaOpts=-Xms512m -Xmx512m -XX:+HeapDumpOnOutOfMemoryError
 sonar.log.level=INFO
 sonar.path.logs=logs
+sonar.web.host=0.0.0.0
 EOF'
 
 # Start SonarQube
@@ -49,5 +50,9 @@ EOF'
 sudo systemctl start sonarqube
 sudo systemctl enable sonarqube
 
+# Check SonarQube service status
+sudo systemctl status sonarqube
+
 # Open the firewall port 9000 if UFW is enabled
 sudo ufw allow 9000/tcp
+sudo ufw enable
