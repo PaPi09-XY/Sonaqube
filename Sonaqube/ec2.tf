@@ -29,7 +29,7 @@ tags = {
 #create security group
 
 resource "aws_security_group" "allow_web" {
-  name        = "allow_web"
+  name        = "allow_web_sonaqube"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = aws_default_vpc.default_vpc.id
 
