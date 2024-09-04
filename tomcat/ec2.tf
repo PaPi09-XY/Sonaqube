@@ -108,7 +108,7 @@ resource "aws_instance" "server2" {
   subnet_id = aws_default_subnet.default_Az1.id
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name = "kay2"
-  user_data = "${file("install_tomacat.sh")}"
+  user_data = "${file("install_tomcat.sh")}"
 
   tags = {
     Name = "tomcat_server"
