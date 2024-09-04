@@ -16,6 +16,14 @@ sudo useradd -m -d /opt/sonarqube sonarqube
 # Set permissions
 sudo chown -R sonarqube:sonarqube /opt/sonarqube
 
+# Configure SonarQube memory settings
+sudo bash -c 'cat <<EOF >> /opt/sonarqube/conf/sonar.properties
+sonar.web.javaOpts=-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError
+sonar.search.javaOpts=-Xms512m -Xmx512m -XX:+HeapDumpOnOutOfMemoryError
+sonar.log.level=INFO
+sonar.path.logs=logs
+EOF'
+
 # Start SonarQube
 sudo -u sonarqube /opt/sonarqube/bin/linux-x86-64/sonar.sh start
 
