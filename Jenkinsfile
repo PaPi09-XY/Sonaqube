@@ -23,11 +23,20 @@ pipeline {
             }
         }
 
+             // Quality Gate check - ensures code quality thresholds are met
         stage('Quality Gate') {
             steps {
-                waitForQualityGate abortPipeline: true
+                timeout(time: 3, unit: 'MINUTES') {  // Timeout to avoid pipeline hanging
+                    script {
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
+                    }
+                }
             }
         }
+
 
         stage('Push to Nexus') {
             steps {
