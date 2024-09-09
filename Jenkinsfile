@@ -1,10 +1,6 @@
 pipeline {
     agent any
-
-    tools {
-        maven 'Maven_3.8.1'  // Adjust this to your configured Maven installation
-        jdk 'JDK_11'          // Adjust this to your configured JDK installation
-    }
+    
 
     environment {
         SONARQUBE_ENV = 'Sonar_server'  // Adjust this to your configured SonarQube installation
