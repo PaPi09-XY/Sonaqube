@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_ENV = 'Sonar_server'  // Adjust this to your configured SonarQube installation
+        SONARQUBE_ENV = 'sonar_server'  // Adjust this to your configured SonarQube installation
         NEXUS_URL = 'http://3.93.145.24:8081'  // Replace with your Nexus URL
         NEXUS_REPOSITORY = 'maven-snapshots'   // Replace with your Nexus repository name
         NEXUS_CREDENTIALS_ID = 'Nexus1'        // Replace with your Nexus credentials ID in Jenkins
