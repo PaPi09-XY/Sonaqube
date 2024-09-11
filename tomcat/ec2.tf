@@ -117,18 +117,13 @@ resource "aws_instance" "server2" {
 }
 
 # print the url of the tomcat server
-output "Tomcat_website_url" {
-  value     = join ("", ["http://", aws_instance.server2.public_ip, ":", "8080"])
-  description = "Tomcat Server is server2"
+output "website_url" {
+  value     = join("", ["http://", aws_instance.ec2_instance.public_ip, ":", "8080"])
 }
 
 
 
-#output "website-url" {
- # value       = "${aws_instance.server2.*.public_ip}"
-  #description = "PublicIP address details"
-#}
-# aws_instance.ec2_instance_instance.public_dns
+
 
 
 
