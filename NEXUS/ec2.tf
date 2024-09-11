@@ -104,7 +104,6 @@ resource "aws_instance" "server3" {
 }
 
 # Print the URL of the Nexus server
-output "nexus_website_url" {
-  value       = join("", ["http://", aws_instance.server3.public_ip, ":", "8081"])
-  description = "Nexus server is available at this URL"
+output "website_url" {
+  value     = join ("", ["http://", aws_instance.ec2_instance.public_dns, ":", "8081"])
 }
