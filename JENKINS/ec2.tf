@@ -117,18 +117,12 @@ resource "aws_instance" "server1" {
 }
 
 # print the url of the jenkins server
-output "Jenkins_website_url" {
-  value     = join ("", ["http://", aws_instance.server1.public_ip, ":", "8080"])
-  description = "Jenkins Server is server1"
+output "website_url" {
+  value     = join("", ["http://", aws_instance.ec2_instance.public_ip, ":", "8080"])
 }
 
 
 
-#output "website-url" {
- # value       = "${aws_instance.server1.*.public_ip}"
-  #description = "PublicIP address details"
-#}
-# aws_instance.ec2_instance_instance.public_dns
 
 
 
