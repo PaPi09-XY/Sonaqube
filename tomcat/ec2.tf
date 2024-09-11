@@ -102,7 +102,7 @@ data "aws_ami" "ubuntu" {
 }
 
 #create tomcat server
-resource "aws_instance" "server2" {
+resource "aws_instance" "ec2_instance" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   subnet_id = aws_default_subnet.default_Az1.id

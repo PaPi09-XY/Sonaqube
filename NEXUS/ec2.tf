@@ -90,7 +90,7 @@ data "aws_ami" "ubuntu" {
 }
 
 # Create Nexus server instance
-resource "aws_instance" "server3" {
+resource "aws_instance" "ec2_instance" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3a.medium"  
   subnet_id              = aws_default_subnet.default_Az1.id
