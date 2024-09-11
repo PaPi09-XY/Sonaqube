@@ -1,51 +1,27 @@
 #!/bin/bash
 
-# Update the package manager
-sudo apt-get update -y
+# Update package lists
+sudo apt update
 
-# Install Java OpenJDK 11 (required by Nexus)
-sudo apt-get install openjdk-11-jdk -y
+cd /opt
 
-# Create a user for Nexus (without creating a home directory)
-sudo useradd -r -s /bin/bash -d /opt/nexus nexus
+# Install Java (if not already installed)
+sudo apt install openjdk-8-jre-headless -y
 
-# Download Nexus (OSS version)
-sudo mkdir -p /opt/nexus
-cd /opt/nexus
-sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+# Download Nexus Repository Manager
+wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
 
-# Extract the Nexus files
-sudo tar -zxvf latest-unix.tar.gz --strip-components=1
-sudo rm latest-unix.tar.gz
+# Extract the downloaded file
+tar -zxvf latest-unix.tar.gz
 
-# Create the sonatype-work directory for Nexus data
-sudo mkdir -p /opt/sonatype-work/nexus3
-sudo chown -R nexus:nexus /opt/nexus /opt/sonatype-work
+# Rename the extracted folder for simplicity (adjust the name if needed)
+mv nexus-* nexus
 
-# Create a systemd service file for Nexus
-cat <<EOF | sudo tee /etc/systemd/system/nexus.service
-[Unit]
-Description=Nexus Repository Manager
-After=network.target
+# Move Nexus to a desired location (optional)
+sudo mv nexus /opt/
 
-[Service]
-Type=simple
-LimitNOFILE=65536
-ExecStart=/opt/nexus/bin/nexus run
-User=nexus
-Restart=on-failure
+# Create a symbolic link (optional, for convenience)
+sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Enable and start the Nexus service
-sudo systemctl enable nexus
-sudo systemctl start nexus
-
-# Open port 8081 in the firewall (if UFW is used)
-sudo ufw allow 8081/tcp
-
-# Print out the initial Nexus admin password
-echo "Nexus installation complete. The initial admin password is:"
-sudo cat /opt/sonatype-work/nexus3/admin.password
+# Start Nexus as a service
+sudo /opt/nexus/bin/nexus start
