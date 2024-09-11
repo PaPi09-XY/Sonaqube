@@ -26,28 +26,14 @@ pipeline {
              // Quality Gate check - ensures code quality thresholds are met
         stage('Quality Gate') {
             steps {
-                timeout(time: 3, unit: 'MINUTES') {  // Timeout to avoid pipeline hanging
-                    script {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
+                waitForQualityGate abortPipeline: true
             }
         }
 
 
         stage('Push to Nexus') {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/mywebapp.war', type: 'war']],
-                    credentialsId: 'Nexus1',
-                    groupId: 'MyWebApp',
-                    nexusUrl: '52.87.237.16:8081',
-                    nexusVersion: 'nexus3',
-                    protocol: 'http',
-                    repository: 'maven-snapshots',
-                    version: '1.0-SNAPSHOT'
+                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/mywebapp.war', type: 'war']], credentialsId: 'Nexus1', groupId: 'MyWebApp', nexusUrl: 'ec2-54-85-134-101.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
             }
         }
 
