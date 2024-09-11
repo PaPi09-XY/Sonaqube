@@ -105,19 +105,13 @@ resource "aws_instance" "server4" {
 }
 
 # Print the URL of the SonarQube server
-output "sonarqube_website_url" {
-  value       = join("", ["http://", aws_instance.server4.public_ip, ":", "9000"])
-  description = "SonarQube server is available at this URL"
+output "website_url" {
+  value     = join ("", ["http://", aws_instance.ec2_instance.public_dns, ":", "9000"])
 }
 
 
 
 
-#output "website-url" {
- # value       = "${aws_instance.server4.*.public_ip}"
-  #description = "PublicIP address details"
-#}
-# aws_instance.ec2_instance_instance.public_dns
 
 
 
