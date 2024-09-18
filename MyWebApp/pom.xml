@@ -4,7 +4,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.papi09xy</groupId>
-    <artifactId>Sonaqube</artifactId>
+    <artifactId>MyWebApp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>papi Learning Maven Webapp</name>
