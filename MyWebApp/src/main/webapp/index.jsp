@@ -3,7 +3,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to KayLearn Solutions</title>
+    <title>Welcome to Learn Solutions</title>
+    <title>Welcome to Learn Solutions</title>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
