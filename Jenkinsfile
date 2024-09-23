@@ -45,18 +45,18 @@ pipeline {
                 script {
                      if (fileExists('MyWebApp/target/MyWebApp.war'))
                 {
-                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'Nexus1', groupId: 'com.mycompany.mywebapp', nexusUrl: 'http://ec2-54-235-228-39.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
+                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'Nexus1', groupId: 'MyWebApp', nexusUrl: 'ec2-184-72-102-3.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOTS'
             } else {
                         error('WAR file not found, skipping Nexus upload.')
                     }
                 }
             }
         }
-        
+
 
         stage('Deploy to Tomcat') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.210.135.165:8080')], contextPath: 'webapp', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://54.172.10.52:8080')], contextPath: 'webapp', war: '**/*.war'
             }
         }
     }
