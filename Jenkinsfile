@@ -45,7 +45,7 @@ pipeline {
                 script {
                      if (fileExists('MyWebApp/target/MyWebApp.war'))
                 {
-                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'Nexus1', groupId: 'MyWebApp', nexusUrl: 'ec2-184-72-102-3.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOTS'
+                nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'Nexus1', groupId: 'MyWebApp', nexusUrl: 'ec2-184-72-102-3.compute-1.amazonaws.com:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
             } else {
                         error('WAR file not found, skipping Nexus upload.')
                     }
