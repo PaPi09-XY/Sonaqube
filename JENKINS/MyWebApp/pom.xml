@@ -7,7 +7,7 @@
     <artifactId>MyWebApp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>papi Learning Maven Webapp</name>
+    <name>sonaqube Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
